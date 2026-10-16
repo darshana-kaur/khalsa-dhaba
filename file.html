@@ -1,0 +1,601 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khalsa Dhaba |  The Authentic Punjabi Taste</title>
+<meta name="description" content="Discover authentic Punjabi food at Khalsa Dhaba. Explore our menu, delicious meals and restaurant specials.">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+:root {
+  --red: #a51d25;
+  --dark: #211710;
+  --gold: #f4b942;
+  --cream: #fff8ec;
+}
+body {
+  font-family: Arial, sans-serif;
+  color: var(--dark);
+  background: var(--cream);
+  line-height: 1.6;
+}
+nav {
+  background: #211710;
+  color: white;
+  padding: 15px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 15px #0003;
+}
+.logo {
+  font-size: 25px;
+  font-weight: 900;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.logo span {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: white;
+  text-align: center;
+}
+nav ul {
+  display: flex;
+  gap: 23px;
+  list-style: none;
+  align-items: center;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  transition: .3s;
+}
+nav a:hover { color: var(--gold); }
+.nav-order, .btn {
+  display: inline-block;
+  background: var(--red);
+  color: white;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: .3s;
+}
+.btn:hover, .nav-order:hover {
+  background: #7d1119;
+  transform: translateY(-2px);
+}
+.menu-toggle {
+  display: none;
+  font-size: 27px;
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.hero {
+  min-height: 590px;
+  display: flex;
+  align-items: center;
+  padding: 70px 8%;
+  color: white;
+  background:
+    linear-gradient(90deg, #170d08ed 0%, #170d0899 55%, #170d0830 100%),
+    url("https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=1800&q=85")
+    center/cover;
+}
+.hero-content { max-width: 650px; }
+.tag {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 13px;
+  font-weight: bold;
+}
+.hero h1 {
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1.12;
+  margin: 20px 0;
+}
+.hero h1 span { color: var(--gold); }
+.hero p {
+  color: #f4e9dc;
+  font-size: 17px;
+  max-width: 510px;
+  margin-bottom: 28px;
+}
+.btn-gold {
+  background: var(--gold);
+  color: #26180d;
+  margin-left: 10px;
+}
+.btn-gold:hover { background: #ffd16a; }
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--red);
+  color: white;
+  text-align: center;
+  padding: 25px 5%;
+  gap: 20px;
+}
+.features h3 { color: var(--gold); font-size: 18px; }
+.features p { font-size: 13px; }
+section { scroll-margin-top: 85px; }
+.section {
+  padding: 75px 7%;
+}
+.section-heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+.section-heading .tag { color: var(--red); }
+.section-heading h2 {
+  font-size: clamp(30px, 4vw, 42px);
+  margin: 8px 0;
+}
+.section-heading p { color: #77695e; }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 45px;
+  align-items: center;
+}
+.about-img {
+  width: 100%;
+  height: 390px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 12px 12px 0 #edc17d;
+}
+.about-copy h2 { font-size: 36px; margin: 12px 0; }
+.about-copy p { color: #6d6257; margin-bottom: 17px; }
+.menu-section { background: #f4ead9; }
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+.filter-btn {
+  padding: 10px 19px;
+  border: 1px solid #d7bfa0;
+  background: white;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.filter-btn.active, .filter-btn:hover {
+  background: var(--red);
+  color: white;
+  border-color: var(--red);
+}
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+}
+.food-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px #34201012;
+  transition: .3s;
+}
+.food-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px #34201020;
+}
+.food-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+.food-info { padding: 20px; }
+.food-info h3 { font-size: 20px; }
+.food-info p {
+  color: #786b5e;
+  font-size: 14px;
+  min-height: 45px;
+  margin: 8px 0 15px;
+}
+.food-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.price { color: var(--red); font-size: 21px; font-weight: bold; }
+.order-btn {
+  border: none;
+  background: var(--red);
+  color: white;
+  border-radius: 5px;
+  padding: 10px 13px;
+  cursor: pointer;
+}
+.order-btn:hover { background: #74121a; }
+.promo {
+  background: linear-gradient(100deg, #3a1710ed, #7b2016d9),
+  url("https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1400&q=80") center/cover;
+  color: white;
+  padding: 65px 7%;
+  text-align: center;
+}
+.promo h2 { font-size: clamp(28px, 4vw, 42px); }
+.promo p { margin: 12px 0 24px; color: #f5e5d6; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.gallery-grid img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 9px;
+  transition: .3s;
+}
+.gallery-grid img:hover { transform: scale(1.025); }
+.contact-section { background: #f4ead9; }
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.contact-card {
+  padding: 25px;
+  text-align: center;
+  background: white;
+  border-radius: 10px;
+}
+.contact-card .emoji { font-size: 30px; }
+.contact-card h3 { margin: 8px 0; }
+.contact-card p { color: #75695d; font-size: 14px; }
+footer {
+  background: #211710;
+  color: #eee0d0;
+  text-align: center;
+  padding: 35px 7%;
+}
+footer .logo { margin-bottom: 12px; }
+footer p { font-size: 13px; margin: 7px; }
+footer a { color: var(--gold); text-decoration: none; }
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25d366;
+  color: white;
+  text-decoration: none;
+  padding: 13px 18px;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px #0003;
+  font-weight: bold;
+  z-index: 99;
+}
+@media(max-width: 850px) {
+  nav { flex-wrap: wrap; }
+  .menu-toggle { display: block; }
+  nav ul {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0;
+  }
+  nav ul.show { display: flex; }
+  nav ul li { padding: 10px 0; }
+  .nav-order { display: inline-block; text-align: center; }
+  .about-grid { grid-template-columns: 1fr; }
+  .menu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media(max-width: 540px) {
+  .hero { min-height: 500px; padding: 55px 6%; }
+  .hero p { font-size: 15px; }
+  .features { grid-template-columns: 1fr; gap: 18px; }
+  .section { padding: 55px 5%; }
+  .menu-grid { grid-template-columns: 1fr; }
+  .food-card img { height: 240px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .gallery-grid img { height: 145px; }
+  .btn { padding: 11px 15px; }
+  .btn-gold { margin: 10px 0 0; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#home" style="text-decoration:none">
+    KHAlSA DHABA
+    <span>AUTHENTIC PUNJABI TASTE</span>
+  </a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">☰</button>
+  <ul id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#menu">Our Menu</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a class="nav-order" href="#menu">Order Now</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="home">
+  <div class="hero-content">
+    <div class="tag">♥ Welcome to Khalsa Dhaba</div>
+    <h1>Real Punjabi Taste.<br><span>Made with Love.</span></h1>
+    <p>From buttery curries to fresh hot rotis, discover the comforting flavours of Punjab in every bite.</p>
+    <a class="btn" href="#menu">Explore Our Menu →</a>
+    <a class="btn btn-gold" href="#about">Our Story</a>
+  </div>
+</header>
+
+<div class="features">
+  <div><h3>🍲 Freshly Prepared</h3><p>Made fresh for a delicious meal</p></div>
+  <div><h3>🌶️ Authentic Flavours</h3><p>Inspired by Punjabi cooking</p></div>
+  <div><h3>❤️ Served with Love</h3><p>Good food, warm hospitality</p></div>
+</div>
+
+<section class="section" id="about">
+  <div class="about-grid">
+    <img class="about-img"
+      src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85"
+      alt="Freshly prepared Indian food">
+    <div class="about-copy">
+      <div class="tag">Our Story</div>
+      <h2>A Little Taste of Punjab</h2>
+      <p>Welcome to Khalsa Dhaba, where hearty meals and traditional Indian flavours come together. We celebrate the joy of sharing delicious food with family and friends.</p>
+      <p>From creamy dal makhani and rich paneer curries to flavourful chicken dishes and fresh rotis, our menu brings comfort and flavour to your table.</p>
+      <a class="btn" href="#menu">Discover Our Dishes</a>
+    </div>
+  </div>
+</section>
+
+<section class="section menu-section" id="menu">
+  <div class="section-heading">
+    <div class="tag">Straight from Our Kitchen</div>
+    <h2>Explore Our Menu</h2>
+    <p>Your favourites, full of flavour.</p>
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">All Items</button>
+    <button class="filter-btn" data-filter="veg">Veg</button>
+    <button class="filter-btn" data-filter="nonveg">Non-Veg</button>
+    <button class="filter-btn" data-filter="bread">Roti & Bread</button>
+  </div>
+
+  <div class="menu-grid">
+
+    <article class="food-card" data-category="veg">
+      <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=700&q=80" alt="Dal makhani">
+      <div class="food-info">
+        <h3>Dal Makhani</h3>
+        <p>Slow-cooked lentils in a rich, creamy buttery gravy.</p>
+        <div class="food-bottom"><span class="price">₹180</span><button class="order-btn" data-item="Dal Makhani">Order Now</button></div>
+      </div>
+    </article>
+
+    <article class="food-card" data-category="veg">
+      <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=700&q=80" alt="Paneer curry">
+      <div class="food-info">
+        <h3>Shahi Paneer</h3>
+        <p>Soft paneer in a smooth, rich and aromatic gravy.</p>
+        <div class="food-bottom"><span class="price">₹220</span><button class="order-btn" data-item="Shahi Paneer">Order Now</button></div>
+      </div>
+    </article>
+
+    <article class="food-card" data-category="nonveg">
+      <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=700&q=80" alt="Indian chicken curry">
+      <div class="food-info">
+        <h3>Butter Chicken</h3>
+        <p>Tender chicken in a creamy tomato and butter sauce.</p>
+        <div class="food-bottom"><span class="price">₹320</span><button class="order-btn" data-item="Butter Chicken">Order Now</button></div>
+      </div>
+    </article>
+
+    <article class="food-card" data-category="nonveg">
+      <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=700&q=80" alt="Chicken curry">
+      <div class="food-info">
+        <h3>Chicken Curry</h3>
+        <p>Traditional chicken curry with warming Indian spices.</p>
+        <div class="food-bottom"><span class="price">₹280</span><button class="order-btn" data-item="Chicken Curry">Order Now</button></div>
+      </div>
+    </article>
+
+    <article class="food-card" data-category="nonveg">
+      <img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=700&q=80" alt="Egg curry">
+      <div class="food-info">
+        <h3>Egg Curry</h3>
+        <p>Boiled eggs in a flavourful masala gravy.</p>
+        <div class="food-bottom"><span class="price">₹160</span><button class="order-btn" data-item="Egg Curry">Order Now</button></div>
+      </div>
+    </article>
+
+    <article class="food-card" data-category="veg">
+      <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=700&q=80" alt="Vegetable rice">
+      <div class="food-info">
+        <h3>Veg Biryani</h3>
+        <p>Fragrant rice cooked with vegetables and aromatic spices.</p>
+        <div class="food-bottom"><span class="price">₹190</span><button class="order-btn" data-item="Veg Biryani">Order Now</button></div>
+      </div>
+    </article>
+
+    <article class="food-card" data-category="bread">
+      <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80" alt="Indian flatbread">
+      <div class="food-info">
+        <h3>Tandoori Roti</h3>
+        <p>Freshly prepared Indian bread, perfect with curry.</p>
+        <div class="food-bottom"><span class="price">₹20</span><button class="order-btn" data-item="Tandoori Roti">Order Now</button></div>
+      </div>
+    </article>
+
+    <article class="food-card" data-category="bread">
+      <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&w=700&q=80" alt="Indian naan bread">
+      <div class="food-info">
+        <h3>Butter Naan</h3>
+        <p>Soft, warm naan finished with delicious butter.</p>
+        <div class="food-bottom"><span class="price">₹45</span><button class="order-btn" data-item="Butter Naan">Order Now</button></div>
+      </div>
+    </article>
+
+    <article class="food-card" data-category="veg">
+      <img src="https://images.unsplash.com/photo-1567337710282-00832b415979?auto=format&fit=crop&w=700&q=80" alt="Indian thali">
+      <div class="food-info">
+        <h3>Special Veg Thali</h3>
+        <p>A satisfying Indian meal with a variety of flavours.</p>
+        <div class="food-bottom"><span class="price">₹250</span><button class="order-btn" data-item="Special Veg Thali">Order Now</button></div>
+      </div>
+    </article>
+
+  </div>
+  <p style="text-align:center;color:#77695e;margin-top:25px;font-size:13px">
+    Sample menu and prices — update these to match your actual restaurant menu.
+  </p>
+</section>
+
+<section class="promo">
+  <div class="tag">Good Food. Good Times.</div>
+  <h2>Bring Your Appetite. We'll Bring the Flavour!</h2>
+  <p>Explore our menu and find your next favourite meal.</p>
+  <a href="#menu" class="btn btn-gold">Choose Your Meal →</a>
+</section>
+
+<section class="section" id="gallery">
+  <div class="section-heading">
+    <div class="tag">A Feast for the Eyes</div>
+    <h2>Food & Flavours</h2>
+    <p>Take a look at the delicious world of Indian cuisine.</p>
+  </div>
+  <div class="gallery-grid">
+    <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=500&q=80" alt="Indian curry">
+    <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=500&q=80" alt="Chicken dish">
+    <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=500&q=80" alt="Paneer dish">
+    <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=500&q=80" alt="Indian food">
+  </div>
+</section>
+
+<section class="section contact-section" id="contact">
+  <div class="section-heading">
+    <div class="tag">We'd Love to See You</div>
+    <h2>Visit Khalsa Dhaba</h2>
+    <p>Come hungry, leave happy!</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="emoji">📍</div>
+      <h3>Our Location</h3>
+      <p>Add your restaurant's full address here.</p>
+    </div>
+    <div class="contact-card">
+      <div class="emoji">📞</div>
+      <h3>Call Us</h3>
+      <p>Add your restaurant's phone number here.</p>
+    </div>
+    <div class="contact-card">
+      <div class="emoji">🕒</div>
+      <h3>Opening Hours</h3>
+      <p>Add your actual opening and closing times here.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">KHALSA DHABA</div>
+  <p>Authentic Punjabi Taste • Fresh Food • Warm Hospitality</p>
+  <p>
+    <a href="#home">Home</a> |
+    <a href="#menu">Menu</a> |
+    <a href="#gallery">Gallery</a> |
+    <a href="#contact">Contact</a>
+  </p>
+  <p>© <span id="year"></span> Khalsa Dhaba. All rights reserved.</p>
+</footer>
+
+<a href="#" class="whatsapp-float" id="whatsappBtn">☏ WhatsApp</a>
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("show");
+});
+
+document.querySelectorAll("#navLinks a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("show");
+  });
+});
+
+// Menu category filters
+document.querySelectorAll(".filter-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach(btn =>
+      btn.classList.remove("active")
+    );
+    button.classList.add("active");
+
+    const category = button.dataset.filter;
+    document.querySelectorAll(".food-card").forEach(card => {
+      card.style.display =
+        category === "all" || card.dataset.category === category
+          ? ""
+          : "none";
+    });
+  });
+});
+
+// IMPORTANT: Replace with your real WhatsApp number.
+// Use country code + number, digits only. Example format: 919876543210
+const restaurantWhatsApp = "91YOURNUMBER";
+
+function orderOnWhatsApp(item) {
+  if (restaurantWhatsApp.includes("YOURNUMBER")) {
+    alert("Please add your real WhatsApp number in the JavaScript code first.");
+    return;
+  }
+
+  const message = "Hello Khalsa Dhaba! I would like to order: " + item +
+    ". Please confirm availability and the total price.";
+  const url = "https://wa.me/" + restaurantWhatsApp +
+    "?text=" + encodeURIComponent(message);
+
+  window.open(url, "_blank");
+}
+
+document.querySelectorAll(".order-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    orderOnWhatsApp(button.dataset.item);
+  });
+});
+
+document.getElementById("whatsappBtn").addEventListener("click", event => {
+  event.preventDefault();
+  orderOnWhatsApp("Please share your menu");
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
